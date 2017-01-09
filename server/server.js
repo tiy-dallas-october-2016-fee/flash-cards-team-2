@@ -19,7 +19,7 @@ app.use(passport.initialize()); // Sets up passport middleware
 app.use(passport.session()); // For persistent auth, we need sessions
 require('./authentication.js')(passport); // Where the authentication configuration is
 
-mongoose.connect('mongodb://localhost:28017/test')
+mongoose.connect('mongodb://localhost:28018/test')
 
 
 
