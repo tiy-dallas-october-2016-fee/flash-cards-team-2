@@ -1,0 +1,37 @@
+.set-list {
+
+  .set {
+    border: solid 1px #000;
+    margin: 10px 0;
+    max-width: 400px;
+    padding: 10px;
+  }
+
+  .set-name {
+    float: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    clear: both;
+  }
+
+  .number-of-cards {
+    color: #888;
+    float: right;
+    text-align: right;
+  }
+
+  .button {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .button:hover {
+    color: #DDD;
+  }
+}

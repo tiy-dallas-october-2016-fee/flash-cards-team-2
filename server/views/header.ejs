@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>A Flash Card App</h1>
+
+      <nav>
+        <ul>
+          <% if (isAuthenticated) { %>
+          <li class="logout"><a href="/logout">logout</a></li>
+          <% } %>
+        </ul>
+      </nav>
+
+    </header>
+    <div class="main-content">
