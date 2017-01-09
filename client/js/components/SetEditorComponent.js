@@ -30,7 +30,7 @@ if (window.FC === undefined) { window.FC = {}; }
 
           <input placeholder="name" ref={(input) => { this.nameInput = input; }} />
 
-          <input placeholder="description" ref={(input) => { this.descriptionInput = input; }} />
+          <textarea placeholder="description" ref={(input) => { this.descriptionInput = input; }} />
 
           <button>Save</button>
         </form>

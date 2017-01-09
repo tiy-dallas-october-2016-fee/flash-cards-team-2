@@ -59,7 +59,7 @@ if (window.FC === undefined) {
             React.createElement('input', { placeholder: 'name', ref: function ref(input) {
                 _this2.nameInput = input;
               } }),
-            React.createElement('input', { placeholder: 'description', ref: function ref(input) {
+            React.createElement('textarea', { placeholder: 'description', ref: function ref(input) {
                 _this2.descriptionInput = input;
               } }),
             React.createElement(
