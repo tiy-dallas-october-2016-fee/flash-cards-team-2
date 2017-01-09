@@ -18,7 +18,17 @@ module.exports = function(passport) {
     });
   });
 
-
+  // passport.use('create-set', new PassportLocalStrategy({
+  //   nameFiled: 'name',
+  //   descriptionField: 'description'
+  // },
+  // function(req,name,description,done){
+  //
+  //   var success
+  //
+  // }
+  //
+  // }));
 
 
   passport.use('local-login', new PassportLocalStrategy({
