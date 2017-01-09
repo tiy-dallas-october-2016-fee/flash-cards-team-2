@@ -80,6 +80,12 @@ if (window.FC === undefined) {
         card.incorrectCount += 1;
         FC.UserData.incrementIncorrectCountOnCard(this.props.params.setId, card.id, function () {});
 
+        var currentPosition = this.state.currentCard;
+        if (currentPosition + 1 >= this.state.cards.length) {
+          ReactRouter.browserHistory.goBack();
+          return;
+        }
+
         var copiedState = Object.assign({}, this.state);
         copiedState.currentCard += 1;
         this.setState(copiedState);
