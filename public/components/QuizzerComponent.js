@@ -34,6 +34,18 @@ if (window.FC === undefined) {
     }
 
     _createClass(QuizzerComponent, [{
+      key: "reset",
+      value: function reset() {
+        correct = 0;
+        incorrect = 0;
+
+        this.setState({
+          currentCard: 0,
+          showFront: true,
+          completedQuiz: false
+        });
+      }
+    }, {
       key: "componentDidMount",
       value: function componentDidMount() {
         var _this2 = this;
@@ -203,7 +215,7 @@ if (window.FC === undefined) {
                 "div",
                 { className: "button quiz-done",
                   onClick: function onClick() {
-                    window.location.reload();
+                    _this3.reset();
                   } },
                 "Again!"
               )

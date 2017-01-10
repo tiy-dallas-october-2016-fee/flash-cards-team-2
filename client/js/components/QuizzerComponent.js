@@ -17,6 +17,19 @@ if (window.FC === undefined) { window.FC = {}; }
       }
     }
 
+    reset(){
+      correct = 0;
+      incorrect = 0;
+
+
+      this.setState({
+        currentCard: 0,
+        showFront:true,
+        completedQuiz:false
+      })
+
+    }
+
     componentDidMount() {
       correct = 0;
       incorrect = 0;
@@ -126,7 +139,7 @@ if (window.FC === undefined) { window.FC = {}; }
             <div className='button quiz-done'
             onClick={()=> {ReactRouter.browserHistory.goBack();}}>click to go back</div>
             <div className='button quiz-done'
-            onClick={()=>{window.location.reload();}}>Again!</div>
+            onClick={()=>{this.reset();}}>Again!</div>
         </div>
         }
       }
