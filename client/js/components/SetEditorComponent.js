@@ -32,7 +32,7 @@ if (window.FC === undefined) { window.FC = {}; }
 
           <textarea placeholder="description" ref={(input) => { this.descriptionInput = input; }} />
 
-          <button>Save</button>
+          <button>save</button>
         </form>
       </div>
     }

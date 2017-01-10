@@ -65,7 +65,7 @@ if (window.FC === undefined) {
             React.createElement(
               'button',
               null,
-              'Save'
+              'save'
             )
           )
         );

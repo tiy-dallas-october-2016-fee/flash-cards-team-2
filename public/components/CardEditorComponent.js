@@ -28,7 +28,9 @@ if (window.FC === undefined) {
         evt.preventDefault();
 
         var cb = function cb() {
-          ReactRouter.browserHistory.goBack();
+          ReactRouter.browserHistory;
+
+          //removes the callback .goBack();
         };
 
         FC.UserData.addCardToSet(this.props.params.setId, this.frontInput.value, this.backInput.value, cb);
@@ -60,7 +62,7 @@ if (window.FC === undefined) {
             React.createElement(
               "button",
               null,
-              "Save"
+              "Save it"
             )
           )
         );
