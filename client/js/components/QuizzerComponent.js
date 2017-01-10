@@ -9,7 +9,8 @@ if (window.FC === undefined) { window.FC = {}; }
 
       this.state = {
         currentCard: 0,
-        showFront: true
+        showFront: true,
+        completedQuiz: false
       }
     }
 

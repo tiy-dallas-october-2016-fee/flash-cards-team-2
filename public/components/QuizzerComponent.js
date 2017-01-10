@@ -23,7 +23,8 @@ if (window.FC === undefined) {
 
       _this.state = {
         currentCard: 0,
-        showFront: true
+        showFront: true,
+        completedQuiz: false
       };
       return _this;
     }
