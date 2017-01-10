@@ -8,9 +8,7 @@ if (window.FC === undefined) { window.FC = {}; }
       evt.preventDefault();
 
       var cb = () => {
-        ReactRouter.browserHistory;
-
-        //removes the callback .goBack();
+        ReactRouter.browserHistory.goBack();
       };
 
       FC.UserData.addCardToSet(this.props.params.setId, this.frontInput.value, this.backInput.value, cb);
@@ -26,9 +24,7 @@ if (window.FC === undefined) { window.FC = {}; }
 
           <input placeholder="back" ref={(input) => {this.backInput = input; }} />
 
-          <button>Save it</button>
-
-
+          <button>Save</button>
 
         </form>
 

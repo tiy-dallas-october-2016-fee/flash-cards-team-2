@@ -24,7 +24,7 @@ if (window.FC === undefined) { window.FC = {}; }
     }
 
     submitSet(evt) {
-    
+
       $.ajax({
         url: '/api/sets',
         method: 'POST',
@@ -60,12 +60,8 @@ if (window.FC === undefined) { window.FC = {}; }
 
           <textarea placeholder="description" ref={(input) => { this.descriptionInput = input; }} />
 
-<<<<<<< HEAD
           <button>save</button>
-=======
-          <button>Save</button>
 
->>>>>>> c19d1b3c06cf2120c328cd98871fac427c238d63
         </form>
         {warnText}
       </div>
