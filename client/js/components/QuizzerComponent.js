@@ -2,6 +2,9 @@ if (window.FC === undefined) { window.FC = {}; }
 
 (function() {
 
+  var correct;
+  var incorrect
+
   class QuizzerComponent extends React.Component {
 
     constructor() {
@@ -15,6 +18,8 @@ if (window.FC === undefined) { window.FC = {}; }
     }
 
     componentDidMount() {
+      correct = 0;
+      incorrect = 0;
 
       var cb = (set) => {
 
@@ -43,11 +48,16 @@ if (window.FC === undefined) { window.FC = {}; }
 
       var card = this.state.cards[this.state.currentCard];
       card.correctCount += 1;
+      correct ++;
       FC.UserData.incrementCorrectCountOnCard(this.props.params.setId, card.id, () => {});
 
       var currentPosition = this.state.currentCard;
       if (currentPosition + 1 >= this.state.cards.length) {
-        ReactRouter.browserHistory.goBack();
+        // ReactRouter.browserHistory.goBack();
+
+        this.setState({
+          completedQuiz:true,
+        });
         return;
       }
 
@@ -59,11 +69,16 @@ if (window.FC === undefined) { window.FC = {}; }
     markIncorrect() {
       var card = this.state.cards[this.state.currentCard];
       card.incorrectCount += 1;
+      incorrect ++;
       FC.UserData.incrementIncorrectCountOnCard(this.props.params.setId, card.id, () => {});
 
       var currentPosition = this.state.currentCard;
       if (currentPosition + 1 >= this.state.cards.length) {
-        ReactRouter.browserHistory.goBack();
+
+        // ReactRouter.browserHistory.goBack();
+        this.setState({
+          completedQuiz:true,
+        });
         return;
       }
 
@@ -76,6 +91,8 @@ if (window.FC === undefined) { window.FC = {}; }
 
       var cardShower;
       var cardNavigation;
+      var quizSummary;
+
       if (this.state.cards !== undefined) {
         var currentCard = this.state.cards[this.state.currentCard];
         var textToShow = this.state.showFront ? currentCard.front: currentCard.back;
@@ -93,6 +110,18 @@ if (window.FC === undefined) { window.FC = {}; }
           <div className="correct" onClick={() => { this.markCorrect();}}>Correct</div>
           <div className="incorrect" onClick={() => {this.markIncorrect();}}>Incorrect</div>
         </div>;
+
+        if (this.state.completedQuiz){
+          cardNavigation = "";
+          cardShower = "";
+          quizSummary = <div className = "quiz-summary">
+            <h1>Quiz Complete</h1>
+            <h2>Correct: {correct} </h2>
+            <h2>Incorrect: {incorrect}</h2>
+            <div className='button quiz-done'
+            onClick={()=> {ReactRouter.browserHistory.goBack();}}>click to go back</div>
+        </div>
+        }
       }
 
       return <div className="quizzer">
@@ -100,6 +129,7 @@ if (window.FC === undefined) { window.FC = {}; }
 
         {cardShower}
         {cardNavigation}
+        {quizSummary}
       </div>
     }
 

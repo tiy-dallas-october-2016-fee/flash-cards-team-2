@@ -24,7 +24,7 @@ if (window.FC === undefined) { window.FC = {}; }
     }
 
     submitSet(evt) {
-    
+
       $.ajax({
         url: '/api/sets',
         method: 'POST',
@@ -44,7 +44,7 @@ if (window.FC === undefined) { window.FC = {}; }
       var warnText;
       if (this.state != null){
         if (this.state.invalid){
-          warnText = <div>"Missing Info!"</div>;
+          warnText = <div className="warning">"Missing Info!"</div>;
         }
         else{
           warnText = "";
