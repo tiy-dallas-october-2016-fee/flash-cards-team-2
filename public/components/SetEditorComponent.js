@@ -65,7 +65,7 @@ if (window.FC === undefined) {
           if (this.state.invalid) {
             warnText = React.createElement(
               'div',
-              null,
+              { className: 'warning' },
               '"Missing Info!"'
             );
           } else {

@@ -13,6 +13,10 @@ if (window.FC === undefined) {
 }
 
 (function () {
+
+  var correct;
+  var incorrect;
+
   var QuizzerComponent = function (_React$Component) {
     _inherits(QuizzerComponent, _React$Component);
 
@@ -23,15 +27,31 @@ if (window.FC === undefined) {
 
       _this.state = {
         currentCard: 0,
-        showFront: true
+        showFront: true,
+        completedQuiz: false
       };
       return _this;
     }
 
     _createClass(QuizzerComponent, [{
+      key: "reset",
+      value: function reset() {
+        correct = 0;
+        incorrect = 0;
+
+        this.setState({
+          currentCard: 0,
+          showFront: true,
+          completedQuiz: false
+        });
+      }
+    }, {
       key: "componentDidMount",
       value: function componentDidMount() {
         var _this2 = this;
+
+        correct = 0;
+        incorrect = 0;
 
         var cb = function cb(set) {
 
@@ -48,6 +68,13 @@ if (window.FC === undefined) {
         FC.UserData.getSet(this.props.params.setId, cb);
       }
     }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        correct = 0;
+        incorrect = 0;
+        console.log(this, 'componentDidUnmount');
+      }
+    }, {
       key: "cardClicked",
       value: function cardClicked() {
         var copiedState = Object.assign({}, this.state);
@@ -61,11 +88,16 @@ if (window.FC === undefined) {
 
         var card = this.state.cards[this.state.currentCard];
         card.correctCount += 1;
+        correct++;
         FC.UserData.incrementCorrectCountOnCard(this.props.params.setId, card.id, function () {});
 
         var currentPosition = this.state.currentCard;
         if (currentPosition + 1 >= this.state.cards.length) {
-          ReactRouter.browserHistory.goBack();
+          // ReactRouter.browserHistory.goBack();
+
+          this.setState({
+            completedQuiz: true
+          });
           return;
         }
 
@@ -78,11 +110,16 @@ if (window.FC === undefined) {
       value: function markIncorrect() {
         var card = this.state.cards[this.state.currentCard];
         card.incorrectCount += 1;
+        incorrect++;
         FC.UserData.incrementIncorrectCountOnCard(this.props.params.setId, card.id, function () {});
 
         var currentPosition = this.state.currentCard;
         if (currentPosition + 1 >= this.state.cards.length) {
-          ReactRouter.browserHistory.goBack();
+
+          // ReactRouter.browserHistory.goBack();
+          this.setState({
+            completedQuiz: true
+          });
           return;
         }
 
@@ -97,6 +134,8 @@ if (window.FC === undefined) {
 
         var cardShower;
         var cardNavigation;
+        var quizSummary;
+
         if (this.state.cards !== undefined) {
           var currentCard = this.state.cards[this.state.currentCard];
           var textToShow = this.state.showFront ? currentCard.front : currentCard.back;
@@ -139,6 +178,49 @@ if (window.FC === undefined) {
               "Incorrect"
             )
           );
+
+          if (this.state.completedQuiz) {
+            cardNavigation = "";
+            cardShower = "";
+            quizSummary = React.createElement(
+              "div",
+              { className: "quiz-summary" },
+              React.createElement(
+                "h1",
+                null,
+                "Quiz Complete"
+              ),
+              React.createElement(
+                "h2",
+                null,
+                "Correct: ",
+                correct,
+                " "
+              ),
+              React.createElement(
+                "h2",
+                null,
+                "Incorrect: ",
+                incorrect
+              ),
+              React.createElement(
+                "div",
+                { className: "button quiz-done",
+                  onClick: function onClick() {
+                    ReactRouter.browserHistory.goBack();
+                  } },
+                "click to go back"
+              ),
+              React.createElement(
+                "div",
+                { className: "button quiz-done",
+                  onClick: function onClick() {
+                    _this3.reset();
+                  } },
+                "Again!"
+              )
+            );
+          }
         }
 
         return React.createElement(
@@ -146,7 +228,8 @@ if (window.FC === undefined) {
           { className: "quizzer" },
           "The Quizzer",
           cardShower,
-          cardNavigation
+          cardNavigation,
+          quizSummary
         );
       }
     }]);
