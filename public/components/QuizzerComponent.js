@@ -56,6 +56,13 @@ if (window.FC === undefined) {
         FC.UserData.getSet(this.props.params.setId, cb);
       }
     }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        correct = 0;
+        incorrect = 0;
+        console.log(this, 'componentDidUnmount');
+      }
+    }, {
       key: "cardClicked",
       value: function cardClicked() {
         var copiedState = Object.assign({}, this.state);
@@ -191,6 +198,14 @@ if (window.FC === undefined) {
                     ReactRouter.browserHistory.goBack();
                   } },
                 "click to go back"
+              ),
+              React.createElement(
+                "div",
+                { className: "button quiz-done",
+                  onClick: function onClick() {
+                    window.location.reload();
+                  } },
+                "Again!"
               )
             );
           }

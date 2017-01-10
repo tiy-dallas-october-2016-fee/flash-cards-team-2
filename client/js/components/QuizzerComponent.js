@@ -36,6 +36,11 @@ if (window.FC === undefined) { window.FC = {}; }
       FC.UserData.getSet(this.props.params.setId, cb);
 
     }
+    componentWillUnmount(){
+      correct = 0;
+      incorrect = 0;
+      console.log(this, 'componentDidUnmount')
+    }
 
     cardClicked() {
       var copiedState = Object.assign({}, this.state);
@@ -120,6 +125,8 @@ if (window.FC === undefined) { window.FC = {}; }
             <h2>Incorrect: {incorrect}</h2>
             <div className='button quiz-done'
             onClick={()=> {ReactRouter.browserHistory.goBack();}}>click to go back</div>
+            <div className='button quiz-done'
+            onClick={()=>{window.location.reload();}}>Again!</div>
         </div>
         }
       }
