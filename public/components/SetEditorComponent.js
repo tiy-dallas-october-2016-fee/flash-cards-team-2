@@ -23,9 +23,26 @@ if (window.FC === undefined) {
     }
 
     _createClass(SetEditorComponent, [{
+      key: 'validateSet',
+      value: function validateSet(evt) {
+        evt.preventDefault();
+
+        if (!this.nameInput.value || !this.descriptionInput.value) {
+
+          this.setState({
+            invalid: true
+          });
+        } else {
+
+          this.setState({
+            invalid: false
+          });
+          this.submitSet(evt);
+        }
+      }
+    }, {
       key: 'submitSet',
       value: function submitSet(evt) {
-        evt.preventDefault();
 
         $.ajax({
           url: '/api/sets',
@@ -43,6 +60,19 @@ if (window.FC === undefined) {
       value: function render() {
         var _this2 = this;
 
+        var warnText;
+        if (this.state != null) {
+          if (this.state.invalid) {
+            warnText = React.createElement(
+              'div',
+              null,
+              '"Missing Info!"'
+            );
+          } else {
+            warnText = "";
+          }
+        }
+
         return React.createElement(
           'div',
           { className: 'set-editor' },
@@ -54,7 +84,7 @@ if (window.FC === undefined) {
           React.createElement(
             'form',
             { onSubmit: function onSubmit(evt) {
-                _this2.submitSet(evt);
+                _this2.validateSet(evt);
               } },
             React.createElement('input', { placeholder: 'name', ref: function ref(input) {
                 _this2.nameInput = input;
@@ -67,7 +97,8 @@ if (window.FC === undefined) {
               null,
               'save'
             )
-          )
+          ),
+          warnText
         );
       }
     }]);
