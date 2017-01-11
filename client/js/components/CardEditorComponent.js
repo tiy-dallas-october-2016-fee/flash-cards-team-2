@@ -8,11 +8,14 @@ if (window.FC === undefined) { window.FC = {}; }
       evt.preventDefault();
 
       var cb = () => {
-        ReactRouter.browserHistory.goBack();
+        // ReactRouter.browserHistory.goBack();
+        this.frontInput.value = '';
+        this.backInput.value = '';
       };
 
-      FC.UserData.addCardToSet(this.props.params.setId, this.frontInput.value, this.backInput.value, cb);
-    }
+       FC.UserData.addCardToSet(this.props.params.setId, this.frontInput.value, this.backInput.value, cb);
+
+      }
 
     render() {
       return <div className="card-editor">
@@ -28,7 +31,7 @@ if (window.FC === undefined) { window.FC = {}; }
 
         </form>
 
-      </div>;
+      </div>
     }
 
   }
