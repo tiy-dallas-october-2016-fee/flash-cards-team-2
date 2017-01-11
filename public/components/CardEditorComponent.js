@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -23,44 +23,74 @@ if (window.FC === undefined) {
     }
 
     _createClass(CardEditorComponent, [{
-      key: "submitCard",
+      key: 'submitCard',
       value: function submitCard(evt) {
+        var _this2 = this;
+
         evt.preventDefault();
 
         var cb = function cb() {
-          ReactRouter.browserHistory.goBack();
+          // ReactRouter.browserHistory.goBack();
+          _this2.frontInput.value = '';
+          _this2.backInput.value = '';
         };
 
         FC.UserData.addCardToSet(this.props.params.setId, this.frontInput.value, this.backInput.value, cb);
       }
     }, {
-      key: "render",
+      key: 'render',
       value: function render() {
-        var _this2 = this;
+        var _this3 = this;
 
         return React.createElement(
-          "div",
-          { className: "card-editor" },
+          'div',
+          { className: 'card-editor' },
           React.createElement(
-            "h2",
-            null,
-            "The Card Editor"
+            'div',
+            { className: 'directions' },
+            React.createElement(
+              'h2',
+              null,
+              'The Card Editor'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'Enter the data on the front and back of your card.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'When completed with the card click the submit button and your cards will be added to the set.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              ' When finished adding cards click the done button.'
+            )
           ),
           React.createElement(
-            "form",
+            'form',
             { onSubmit: function onSubmit(evt) {
-                _this2.submitCard(evt);
+                _this3.submitCard(evt);
               } },
-            React.createElement("input", { placeholder: "front", ref: function ref(input) {
-                _this2.frontInput = input;
+            React.createElement('textarea', { placeholder: 'front', ref: function ref(input) {
+                _this3.frontInput = input;
               } }),
-            React.createElement("input", { placeholder: "back", ref: function ref(input) {
-                _this2.backInput = input;
+            React.createElement('input', { placeholder: 'back', ref: function ref(input) {
+                _this3.backInput = input;
               } }),
             React.createElement(
-              "button",
+              'button',
               null,
-              "Save"
+              'Submit'
+            ),
+            React.createElement(
+              'button',
+              { onClick: function onClick(evt) {
+                  ReactRouter.browserHistory.goBack();
+                } },
+              'Done'
             )
           )
         );
