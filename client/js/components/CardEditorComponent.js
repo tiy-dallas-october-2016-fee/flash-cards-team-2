@@ -28,6 +28,7 @@ if (window.FC === undefined) { window.FC = {}; }
           <input placeholder="back" ref={(input) => {this.backInput = input; }} />
 
           <button>Save</button>
+          <button onClick={(evt) => {ReactRouter.browserHistory.goBack();}}>Done</button>
 
         </form>
 

@@ -65,6 +65,13 @@ if (window.FC === undefined) {
               'button',
               null,
               'Save'
+            ),
+            React.createElement(
+              'button',
+              { onClick: function onClick(evt) {
+                  ReactRouter.browserHistory.goBack();
+                } },
+              'Done'
             )
           )
         );
