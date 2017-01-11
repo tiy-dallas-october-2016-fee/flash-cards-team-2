@@ -19,15 +19,20 @@ if (window.FC === undefined) { window.FC = {}; }
 
     render() {
       return <div className="card-editor">
-        <h2>The Card Editor</h2>
+        <div className="directions">
+          <h2>The Card Editor</h2>
+          <p>Enter the data on the front and back of your card.</p>
+          <p>When completed with the card click the submit button and your cards will be added to the set.</p>
+          <p> When finished adding cards click the done button.</p>
+        </div>  
 
         <form onSubmit={(evt) => { this.submitCard(evt);}}>
 
-          <input placeholder="front" ref={(input) => {this.frontInput = input; }} />
+          <textarea placeholder="front" ref={(input) => {this.frontInput = input; }} />
 
           <input placeholder="back" ref={(input) => {this.backInput = input; }} />
 
-          <button>Save</button>
+          <button>Submit</button>
           <button onClick={(evt) => {ReactRouter.browserHistory.goBack();}}>Done</button>
 
         </form>

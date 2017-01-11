@@ -46,16 +46,35 @@ if (window.FC === undefined) {
           'div',
           { className: 'card-editor' },
           React.createElement(
-            'h2',
-            null,
-            'The Card Editor'
+            'div',
+            { className: 'directions' },
+            React.createElement(
+              'h2',
+              null,
+              'The Card Editor'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'Enter the data on the front and back of your card.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'When completed with the card click the submit button and your cards will be added to the set.'
+            ),
+            React.createElement(
+              'p',
+              null,
+              ' When finished adding cards click the done button.'
+            )
           ),
           React.createElement(
             'form',
             { onSubmit: function onSubmit(evt) {
                 _this3.submitCard(evt);
               } },
-            React.createElement('input', { placeholder: 'front', ref: function ref(input) {
+            React.createElement('textarea', { placeholder: 'front', ref: function ref(input) {
                 _this3.frontInput = input;
               } }),
             React.createElement('input', { placeholder: 'back', ref: function ref(input) {
@@ -64,7 +83,7 @@ if (window.FC === undefined) {
             React.createElement(
               'button',
               null,
-              'Save'
+              'Submit'
             ),
             React.createElement(
               'button',
