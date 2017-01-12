@@ -134,6 +134,30 @@ footer {
 .set-list .button:hover {
   color: #DDD; }
 
+.set-list .button .active {
+  color: black;
+  font-weight: bolder; }
+
+.set-list .button .inactive {
+  color: #888;
+  font-weight: normal; }
+
+.set-list .sort {
+  overflow: auto;
+  border: solid 1px #000;
+  margin: 10px 0;
+  max-width: 400px;
+  padding: 10px; }
+  .set-list .sort .active {
+    color: black;
+    font-weight: bolder; }
+  .set-list .sort .inactive {
+    color: #888;
+    font-weight: normal; }
+  .set-list .sort div {
+    display: inline-block;
+    margin: 12px; }
+
 .set-editor input {
   display: block; }
 
