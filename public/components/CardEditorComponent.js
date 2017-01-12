@@ -29,6 +29,12 @@ if (window.FC === undefined) {
 
         evt.preventDefault();
 
+        if (this.frontInput.value === '' || this.backInput.value === '') {
+          //error on no card front or back text
+          console.log('no front/back info', this.frontInput.value, this.backInput.value);
+          return;
+        }
+
         var cb = function cb() {
           // ReactRouter.browserHistory.goBack();
           _this2.frontInput.value = '';
