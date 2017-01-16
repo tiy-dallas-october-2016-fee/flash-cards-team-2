@@ -66,6 +66,49 @@ if (window.FC === undefined) {
         ReactRouter.hashHistory.push('/set/' + setId + '/quizzer');
       }
     }, {
+      key: 'alphabetizeSets',
+      value: function alphabetizeSets() {
+        var sortSets = this.state.sets;
+        //test
+        console.log("alphabetize set", sortSets);
+        //
+        sortSets.sort(function (a, b) {
+
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+
+        this.setState({
+          sets: sortSets,
+          sort: "alpha"
+        });
+      }
+    }, {
+      key: 'sizeOrderSets',
+      value: function sizeOrderSets() {
+        var sortSets = this.state.sets;
+
+        sortSets.sort(function (a, b) {
+          if (a.cards.length < b.cards.length) {
+            return 1;
+          }
+          if (a.cards.length > b.cards.length) {
+            return -1;
+          }
+          return 0;
+        });
+
+        this.setState({
+          sets: sortSets,
+          sort: "number"
+        });
+      }
+    }, {
       key: 'render',
       value: function render() {
         var _this4 = this;
@@ -81,6 +124,18 @@ if (window.FC === undefined) {
           );
         }
 
+        var activeAlpha = "inactive";
+        var activeNum = "inactive";
+        if (this.state.sort !== null) {
+          if (this.state.sort === 'number') {
+            activeAlpha = 'inactive';
+            activeNum = 'active';
+          } else if (this.state.sort === 'alpha') {
+            activeAlpha = 'active';
+            activeNum = 'inactive';
+          }
+        }
+
         return React.createElement(
           'div',
           { className: 'set-list' },
@@ -88,6 +143,24 @@ if (window.FC === undefined) {
             'h2',
             null,
             'Set List'
+          ),
+          React.createElement(
+            'div',
+            { className: 'sort' },
+            React.createElement(
+              'div',
+              { className: activeAlpha, onClick: function onClick() {
+                  _this4.alphabetizeSets();
+                } },
+              'by name'
+            ),
+            React.createElement(
+              'div',
+              { className: activeNum, onClick: function onClick() {
+                  _this4.sizeOrderSets();
+                } },
+              'by # of cards'
+            )
           ),
           noSetsMessaging,
           React.createElement(

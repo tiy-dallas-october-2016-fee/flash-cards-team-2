@@ -7,6 +7,12 @@ if (window.FC === undefined) { window.FC = {}; }
     submitCard(evt) {
       evt.preventDefault();
 
+      if(this.frontInput.value === '' || this.backInput.value=== ''){
+        //error on no card front or back text
+        console.log('no front/back info',this.frontInput.value,this.backInput.value)
+        return;
+      }
+
       var cb = () => {
         // ReactRouter.browserHistory.goBack();
         this.frontInput.value = '';
@@ -24,7 +30,7 @@ if (window.FC === undefined) { window.FC = {}; }
           <p>Enter the data on the front and back of your card.</p>
           <p>When completed with the card click the submit button and your cards will be added to the set.</p>
           <p> When finished adding cards click the done button.</p>
-        </div>  
+        </div>
 
         <form onSubmit={(evt) => { this.submitCard(evt);}}>
 

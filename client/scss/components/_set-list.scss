@@ -34,4 +34,36 @@
   .button:hover {
     color: #DDD;
   }
+
+  .button .active{
+    color:black;
+    font-weight: bolder;
+  }
+  .button .inactive{
+    color: #888;
+    font-weight:normal;
+  }
+
+
+  .sort{
+    overflow: auto;
+    border: solid 1px #000;
+    margin: 10px 0;
+    max-width: 400px;
+    padding: 10px;
+
+    .active{
+      color:black;
+      font-weight: bolder;
+    }
+    .inactive{
+      color:#888;
+      font-weight: normal;
+    }
+    div{
+      display: inline-block;
+      margin:12px;
+    }
+  }
+
 }
